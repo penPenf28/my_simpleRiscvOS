@@ -1,6 +1,13 @@
-void start_kernel(){
+extern void uart_init(void);
+extern void uart_puts(char *s);
+
+void start_kernel(void){
+
+    uart_init();
+    uart_puts("Hello,MyTinyOS!\n");
+
     while (1){
         /* code */
-    }
+    };
     
 }
