@@ -64,6 +64,8 @@ export PATH="$PATH:$HOME/ws/tools/gcc/bin:$HOME/ws/tools/qemu/bin"
 
 ## 3 References
 
+感谢以下仓库提供的帮助和教学，不胜感激
+
 * plctlab/riscv-operating-system-mooc：https://github.com/plctlab/riscv-operating-system-mooc
 * The Adventures of OS：https://osblog.stephenmarz.com/index.html
 * mini-riscv-os: https://github.com/cccriscv/mini-riscv-os
