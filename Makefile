@@ -11,10 +11,13 @@ OBJDUMP = ${CROSS_COMPILE}objdump
 
 SRCS_ASM = \
 	start.S \
+	mem.S \
 
 SRCS_C = \
 	kernel.c \
 	uart.c \
+	printf.c \
+	page.c \
 
 
 
@@ -27,7 +30,7 @@ all: os.elf
 
 #$^  表示所有的依赖文件
 os.elf: ${OBJS}
-	${CC} $(CFLAGS) -Ttext=0x80000000 -o os.elf $^
+	${CC} $(CFLAGS) -T os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
 
 

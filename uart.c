@@ -1,5 +1,4 @@
-#include"type.h"
-#include"platform.h"
+#include"os.h"
 
 //get address of regs
 #define UART_REG(reg) ((volatile uint8_t *)(UART0 + reg))

@@ -1,13 +1,15 @@
+#include"os.h"
+
 extern void uart_init(void);
-extern void uart_puts(char *s);
+extern void page_init(void);
 
 void start_kernel(void){
 
-    uart_init();
-    uart_puts("Hello,MyTinyOS!\n");
+	uart_init();
+	uart_puts("Hello, RVOS!\n");
 
-    while (1){
-        /* code */
-    };
+	page_init();
+
+	while (1) {}; // stop here!
     
 }
