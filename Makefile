@@ -21,6 +21,7 @@ SRCS_C = \
 	page.c \
 	schedule.c \
 	user.c \
+	trap.c \
 
 
 
