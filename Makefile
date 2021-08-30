@@ -20,6 +20,7 @@ SRCS_C = \
 	printf.c \
 	page.c \
 	schedule.c \
+	user.c \
 
 
 
