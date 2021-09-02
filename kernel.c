@@ -1,5 +1,9 @@
-#include"os.h"
+#include "os.h"
 
+/*
+ * Following functions SHOULD be called ONLY ONE time here,
+ * so just declared here ONCE and NOT included in file os.h.
+ */
 extern void uart_init(void);
 extern void page_init(void);
 extern void sched_init(void);
@@ -9,12 +13,13 @@ extern void trap_init(void);
 extern void plic_init(void);
 extern void timer_init(void);
 
-void start_kernel(void){
-
+void start_kernel(void)
+{
 	uart_init();
-	uart_puts("Hello, My_Simple_OS!\n");
+	uart_puts("Hello, RVOS!\n");
 
 	page_init();
+
 	trap_init();
 
 	plic_init();
@@ -25,10 +30,9 @@ void start_kernel(void){
 
 	os_main();
 
-
 	schedule();
 
-	uart_puts("never go there!");
+	uart_puts("Would not go here!\n");
 	while (1) {}; // stop here!
-    
 }
+
