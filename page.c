@@ -14,7 +14,11 @@ extern uint32_t BSS_END;
 extern uint32_t HEAP_START;
 extern uint32_t HEAP_SIZE;
 
-
+/*
+ * _alloc_start points to the actual start address of heap pool
+ * _alloc_end points to the actual end address of heap pool
+ * _num_pages holds the actual max number of pages we can allocate.
+ */
 static uint32_t _alloc_start = 0;
 static uint32_t _alloc_end = 0;
 static uint32_t _num_pages = 0;
@@ -24,7 +28,6 @@ static uint32_t _num_pages = 0;
 
 #define PAGE_TAKEN (uint8_t)(1 << 0)
 #define PAGE_LAST  (uint8_t)(1 << 1)
-
 
 /*
  * Page Descriptor 
@@ -64,7 +67,6 @@ static inline int _is_last(struct Page *page)
 	}
 }
 
-
 /*
  * align the address to the border of page(4K)
  */
@@ -98,7 +100,6 @@ void page_init()
 	printf("BSS:    0x%x -> 0x%x\n", BSS_START, BSS_END);
 	printf("HEAP:   0x%x -> 0x%x\n", _alloc_start, _alloc_end);
 }
-
 
 /*
  * Allocate a memory block which is composed of contiguous physical pages
@@ -185,5 +186,4 @@ void page_test()
 	void *p3 = page_alloc(4);
 	printf("p3 = 0x%x\n", p3);
 }
-
 
