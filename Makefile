@@ -19,29 +19,24 @@ SRCS_C = \
 	uart.c \
 	printf.c \
 	page.c \
-	schedule.c \
+	sched.c \
 	user.c \
 	trap.c \
 	plic.c \
+	timer.c \
+	lock.c \
 
-
-
-# 后缀替换
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)
 
 .DEFAULT_GOAL := all
 all: os.elf
 
-#$^  表示所有的依赖文件
+# start.o must be the first in dependency!
 os.elf: ${OBJS}
 	${CC} $(CFLAGS) -T os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
 
-
-# $@ 　 目标的完整名称。
-# $<  表示第一个依赖文件
-# 即一一对应的生成
 %.o : %.c
 	${CC} ${CFLAGS} -c -o $@ $<
 
@@ -59,7 +54,7 @@ debug: all
 	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
 	@echo "-------------------------------------------------------"
 	@${QEMU} ${QFLAGS} -kernel os.elf -s -S &
-	@${GDB} os.elf -q -x ../gdbinit
+	@${GDB} os.elf -q -x ./gdbinit
 
 .PHONY : code
 code: all
@@ -68,3 +63,4 @@ code: all
 .PHONY : clean
 clean:
 	rm -rf *.o *.bin *.elf
+
